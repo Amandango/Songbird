@@ -1,0 +1,66 @@
+page-home {
+
+    .bigButton {
+        border-radius: 50% 50%;
+        height: 16em;
+        width: 16em;
+        left: 50%;
+        right: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        top: 50%;
+    }
+
+    .smallButtonLeft {
+        border-radius: 50% 50%;
+        height: 3.5em;
+        width: 3.5em;
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        transform: translate(-210%, -50%);
+        top: 50%;
+        z-index: 3;
+        background-color: #D66100;
+    }
+
+    .smallButtonLeft:hover {
+            border-radius: 50% 50%;
+            height: 3.5em;
+            width: 3.5em;
+            position: absolute;
+            left: 50%;
+            right: 50%;
+            transform: translate(-210%, -50%);
+            top: 50%;
+            z-index: 3;
+            background-color: #F1974D;
+    }
+
+    .smallButtonRight {
+        border-radius: 50% 50%;
+        height: 3.5em;
+        width: 3.5em;
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        transform: translate(110%, -50%);
+        top: 50%;
+        z-index: 2;
+        background-color: #D66100;
+    }
+
+    .smallButtonRight:hover {
+        border-radius: 50% 50%;
+        height: 3.5em;
+        width: 3.5em;
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        transform: translate(110%, -50%);
+        top: 50%;
+        z-index: 2;
+        background-color: #F1974D;
+    }
+
+}

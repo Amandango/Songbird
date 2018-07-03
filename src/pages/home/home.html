@@ -1,0 +1,29 @@
+<ion-header text-center>
+  <ion-navbar>
+    <ion-title (click)="navToHome()"><img src="assets/imgs/songbirdlogo.png" class="logo"></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding text-center class="background" (swipe)="swipeEvent($event)">
+  <div (mouseleave)="mouseUp()" class="containerWhole">
+      <div *ngIf="clicked">
+        <button ion-button round class="smallButtonLeft" large (mouseup)="record()">
+            <ion-icon name="mic" large></ion-icon>
+        </button>
+      </div>
+      <!-- <div class="buttonOverlay"></div> -->
+      <button ion-button round class="bigButton" (mousedown)="mouseDown()" (mouseup)="mouseUp()">
+          MOMENT
+      </button>
+      
+      
+      <div *ngIf="clicked">
+        <button ion-button round class="smallButtonRight" large (mouseup)="type()">
+            <ion-icon name="create" large></ion-icon>
+        </button>
+      </div>
+  
+  </div>
+  
+  
+</ion-content>
