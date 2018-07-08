@@ -41,6 +41,12 @@ ion-content {
         inset 0 0 3px 5px rgba(0,0,0,.05),
 }
 
-// .buttonOverlay {
-//     background: radial-gradient(#E85F13, #F27630);
-// }
+.form {
+    width: 70%;
+    margin: 0 auto;
+}
+
+h2 {
+    color: map-get($colors, orange);
+    font-size: 15px;
+}

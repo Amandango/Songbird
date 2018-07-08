@@ -1,0 +1,92 @@
+page-landing {
+
+      @keyframes shrinkLogo {
+        from {
+          transform: scale(1);
+          position: relative;
+          left: 0;
+          right: 0;
+          margin: 50% auto;
+        }
+        to {
+          transform: scale(0.5);
+          position: relative;
+          left: 0;
+          right: 0;
+          margin: 50% auto;
+        }
+      }
+
+      @keyframes moveLogo {
+        from {
+          position: relative;
+          left: 0;
+          right: 0;
+          margin: 50% auto;
+        }
+
+        to {
+          position: relative;
+          left: 0;
+          right: 0;
+          margin: 10% auto;
+        }
+      }
+
+      @keyframes enterUsername {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes enterPassword {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes enterRegister {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+      
+      .homeLogo {  
+        position: relative;
+        left: 0;
+        right: 0;
+        margin: 50% auto;
+        animation: shrinkLogo 2s 1s ease-in-out forwards, moveLogo 2s 1s linear forwards;
+      }
+
+      .username {
+        animation: enterUsername 2s 3s forwards;
+        opacity: 0;
+      }
+
+      .password {
+        animation: enterPassword 2s 3.8s forwards;
+        opacity: 0;
+      }
+
+      .register {
+        position: fixed;
+        bottom: 40px;
+        width: 100%;
+        text-align: center;
+        animation: enterRegister 2s 4.5s forwards;
+        opacity: 0;
+      }
+}
