@@ -33,31 +33,10 @@ page-landing {
         }
       }
 
-      @keyframes enterUsername {
+      @keyframes enterForm {
         from {
           opacity: 0;
         }
-
-        to {
-          opacity: 1;
-        }
-      }
-
-      @keyframes enterPassword {
-        from {
-          opacity: 0;
-        }
-
-        to {
-          opacity: 1;
-        }
-      }
-
-      @keyframes enterRegister {
-        from {
-          opacity: 0;
-        }
-
         to {
           opacity: 1;
         }
@@ -71,22 +50,16 @@ page-landing {
         animation: shrinkLogo 2s 1s ease-in-out forwards, moveLogo 2s 1s linear forwards;
       }
 
-      .username {
-        animation: enterUsername 2s 3s forwards;
+      .form {
+        animation: enterForm 2s 3s forwards;
         opacity: 0;
       }
 
-      .password {
-        animation: enterPassword 2s 3.8s forwards;
-        opacity: 0;
+      .loginButton {
+        padding-top: 70px;
       }
 
-      .register {
-        position: fixed;
-        bottom: 40px;
-        width: 100%;
-        text-align: center;
-        animation: enterRegister 2s 4.5s forwards;
-        opacity: 0;
+      .registerButton {
+        padding-top: 40px;
       }
 }

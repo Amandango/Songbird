@@ -2,18 +2,23 @@
     <img src="assets/imgs/songbirdlogo.png" class="homeLogo">
     
     <div class="form">
-        <ion-item class="username">
-            <ion-label color="orange" floating>Username</ion-label>
-            <ion-input type="text"></ion-input>
+        <ion-item>
+            <ion-label color="orange" stacked>Username</ion-label>
+            <ion-input type="text" [(ngModel)]="loginModel.email"></ion-input>
         </ion-item>
 
-        <ion-item class="password">
-            <ion-label color="orange" floating>Password</ion-label>
-            <ion-input type="text"></ion-input>
+        <ion-item>
+            <ion-label color="orange" stacked>Password</ion-label>
+            <ion-input type="text" [(ngModel)]="loginModel.password"></ion-input>
         </ion-item>
+
+        <div class="loginButton">
+            <button ion-button round color="orange" (click)="login()">Login</button>
+        </div>
+        <div class="registerButton">
+            <button ion-button clear outline round small color="orange" strong>Register</button>
+        </div>
     </div>
 
-    <div class="register">
-        <button ion-button clear strong>Register</button>
-    </div>
+    
 </ion-content>
