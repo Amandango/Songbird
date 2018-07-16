@@ -1,10 +1,13 @@
 <ion-header text-center>
-    <ion-navbar>
-      <ion-title><img src="assets/imgs/songbirdlogo.png" class="logo"></ion-title>
-    </ion-navbar>
-  </ion-header>
+  <ion-navbar>
+    <ion-title>
+      <img src="assets/imgs/songbirdlogo.png" class="logo">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
 
 <ion-content padding (swipe)="swipeEvent($event)">
-
+  <div class="allContent" on-swipe="swipeEvent($event)">
+  </div>
 </ion-content>

@@ -2,5 +2,7 @@
   "name": "Songbird",
   "app_id": "689406b9",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }

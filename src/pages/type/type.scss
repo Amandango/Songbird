@@ -1,0 +1,41 @@
+page-type {
+
+    .allContent {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    ion-item {
+        font-family: 'Poiret One';
+        font-size: 30px;
+    }
+
+    ion-textarea {
+        padding: 5px;
+        padding-left: 10px;
+        border-radius: 10px;
+        background-color: white;
+    }
+
+    .momentTitle {
+        margin-top: 50px;
+    }
+
+    .nextButton {
+        border-radius: 50% 50%;
+        width: 80px;
+        height: 80px;
+        margin-top: 80px;
+        background-color: white;
+    }
+
+    .arrowIcon {
+        font-size: 60px;
+    }
+
+    .formContent {
+        width: 85%;
+        margin: 0 auto;
+    }
+}

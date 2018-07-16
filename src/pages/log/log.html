@@ -1,9 +1,23 @@
 <ion-header text-center>
     <ion-navbar>
-      <ion-title><img src="assets/imgs/songbirdlogo.png" class="logo"></ion-title>
+      <ion-title>
+        <img src="assets/imgs/songbirdlogo.png" class="logo">
+      </ion-title>
     </ion-navbar>
   </ion-header>
-
-<ion-content (swipe)="swipeEvent($event)">
   
-</ion-content>
+  
+  <ion-content padding (swipe)="swipeEvent($event)">
+    <div class="allContent" on-swipe="swipeEvent($event)">
+        <ion-card>
+            <ion-list>
+                <ion-item *ngFor="let text of allTexts">
+                    <div item-start class="circle"></div>
+                    {{text.momentTitle}}
+                    {{text.momentText}}
+                    {{text.createdOn}}
+                </ion-item>
+            </ion-list>
+        </ion-card>
+    </div>
+  </ion-content>

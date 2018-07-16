@@ -6,5 +6,23 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding text-center (swipeRight)="swipeRightEvent()">
+<ion-content padding text-center>
+    <div class="allContent" on-swipe="swipeEvent($event)">
+        <div class="formContent" text-center>
+            <ion-item no-lines>
+                What are you grateful for?
+            </ion-item>
+            <ion-textarea rows="5" [(ngModel)]="text.momentText"></ion-textarea>
+
+            <ion-item no-lines class="momentTitle">
+                Give your moment a title!
+            </ion-item>
+            <ion-textarea rows="1" [(ngModel)]="text.momentTitle"></ion-textarea>
+
+            <button ion-button class="nextButton" large (click)="submitMoment()">
+                <ion-icon name="checkmark" color="secondary" class="arrowIcon"></ion-icon>
+            </button>
+        </div>
+
+    </div>
 </ion-content>

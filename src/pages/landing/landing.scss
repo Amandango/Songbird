@@ -1,62 +1,26 @@
 page-landing {
 
-      @keyframes shrinkLogo {
-        from {
-          transform: scale(1);
-          position: relative;
-          left: 0;
-          right: 0;
-          margin: 50% auto;
-        }
-        to {
-          transform: scale(0.5);
-          position: relative;
-          left: 0;
-          right: 0;
-          margin: 50% auto;
-        }
-      }
-
-      @keyframes moveLogo {
-        from {
-          position: relative;
-          left: 0;
-          right: 0;
-          margin: 50% auto;
-        }
-
-        to {
-          position: relative;
-          left: 0;
-          right: 0;
-          margin: 10% auto;
-        }
-      }
-
-      @keyframes enterForm {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-      
       .homeLogo {  
         position: relative;
         left: 0;
         right: 0;
         margin: 50% auto;
-        animation: shrinkLogo 2s 1s ease-in-out forwards, moveLogo 2s 1s linear forwards;
       }
 
-      .form {
-        animation: enterForm 2s 3s forwards;
-        opacity: 0;
-      }
+      // #log {
+      //   animation: enterForm 2s forwards;
+      //   opacity: 0;
+      // }
+
+      // #reg {
+      //   animation: enterForm 2s forwards;
+      //   opacity: 0;
+      // }
 
       .loginButton {
         padding-top: 70px;
+        width: 120px;
+        margin: 0 auto;
       }
 
       .registerButton {

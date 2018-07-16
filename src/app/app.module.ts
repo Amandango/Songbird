@@ -1,9 +1,11 @@
 //Components
 import { NgModule, ErrorHandler} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
+import { LottieAnimationViewModule } from 'ng-lottie';
 
 //Pages
 import { ProfilePage } from '../pages/profile/profile';
@@ -16,6 +18,9 @@ import { LandingPage } from '../pages/landing/landing';
 
 //Services
 import { getBaseUrl } from '../getBaseUrl';
+
+import { Media } from '@ionic-native/media';
+import { File } from '@ionic-native/file';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,7 +38,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
+    LottieAnimationViewModule.forRoot(),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -51,6 +58,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     getBaseUrl,
+    File,
+    Media,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

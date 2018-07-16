@@ -54,6 +54,10 @@ $tabs-ios-tab-icon-color: white;
 $tabs-ios-tab-text-color-active: #D66100;
 $tabs-ios-tab-text-color: white;
 
+$card-ios-background-color: rgba(255,255,255,0.5);
+$card-ios-border-radius: 15px;
+$card-ios-box-shadow: 0;
+
 
 // App Material Design Variables
 // --------------------------------------------------
@@ -63,6 +67,10 @@ $tabs-md-tab-icon-color-active: #D66100;
 $tabs-md-tab-icon-color: white;
 $tabs-md-tab-text-color-active: #D66100;
 $tabs-md-tab-text-color: white;
+
+$card-md-background-color: rgba(255,255,255,0.5);
+$card-md-border-radius: 15px;
+$card-md-box-shadow: 0;
 
 
 // App Windows Variables
@@ -98,3 +106,9 @@ $tabs-default-border: 0;
 
 @import "roboto";
 @import "noto-sans";
+
+@font-face {
+  font-family: 'Poiret One';
+  font-style: cursive;
+  src: url('../assets/fonts/PoiretOne-Regular.ttf');
+}
