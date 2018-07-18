@@ -6,17 +6,43 @@ page-log {
         height: 100%;
     }
 
-    .circle {
+    // .circle {
+    //     border-radius: 50%;
+    //     width: 10px;
+    //     height: 10px;
+    //     background-color: orange;
+    //     margin-top: 2px;
+    // }
+
+    // .line {
+    //     width: 4px;
+    //     height: 100%;
+    //     background-color: orange;
+    // }
+
+    .momentCount {
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
-        width: 10px;
-        height: 10px;
-        background-color: orange;
+        border: 3px solid orange;
+        float: right;
     }
 
-    .line {
-        width: 2px;
-        height: 100%;
-        color: orange;
+    // .momentsWeek {
+    //     width: 85%;
+    //     margin: 0 auto;
+    //     font-size: 25px;
+    // }
+
+    .momentsWeekTitle {
+        font-size: 18px;
+        font-family: 'Poiret One';
+    }
+
+    .number {
+        font-family: 'Poiret One';
+        font-size: 40px;
+        text-align: center;
     }
 
 }

@@ -1,23 +1,35 @@
 <ion-header text-center>
     <ion-navbar>
-      <ion-title>
-        <img src="assets/imgs/songbirdlogo.png" class="logo">
-      </ion-title>
+        <ion-title>
+            <img src="assets/imgs/songbirdlogo.png" class="logo">
+        </ion-title>
     </ion-navbar>
-  </ion-header>
-  
-  
-  <ion-content padding (swipe)="swipeEvent($event)">
+</ion-header>
+
+
+<ion-content padding (swipe)="swipeEvent($event)">
     <div class="allContent" on-swipe="swipeEvent($event)">
         <ion-card>
+            <ion-card-header text-center>
+                <h2 class="momentsWeekTitle">Moments this week:</h2>
+            </ion-card-header>
+                <ion-card-content>
+                        <div class="number">
+                                24
+                            </div>
+                </ion-card-content>
+                
+        </ion-card>
+
+        <ion-card padding>
             <ion-list>
-                <ion-item *ngFor="let text of allTexts">
-                    <div item-start class="circle"></div>
-                    {{text.momentTitle}}
-                    {{text.momentText}}
-                    {{text.createdOn}}
+                <ion-item *ngFor="let text of allTexts" text-wrap>
+                    <h2>{{text.momentTitle}}</h2>
+                    <p>{{text.createdOn | date}}</p>
+                    <br>
+                    <p>{{text.momentText}}</p>
                 </ion-item>
             </ion-list>
         </ion-card>
     </div>
-  </ion-content>
+</ion-content>

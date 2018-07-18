@@ -25,6 +25,8 @@ import { File } from '@ionic-native/file';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -59,6 +61,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SplashScreen,
     getBaseUrl,
     File,
+    FileTransfer,
     Media,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

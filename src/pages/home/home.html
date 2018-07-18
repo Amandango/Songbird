@@ -28,7 +28,13 @@
       <button ion-button round class="bigButton" (press)="switchRecord()" (tap)="type()" *ngIf="textRecord && !recording">
         <ion-icon name="create" large class="buttonIcons"></ion-icon>
       </button>
+
+      <!-- <button ion-button (click)="uploadRecording()">Upload recording</button> -->
     </div>
+
+    <!-- <div *ngFor="let item of audioList">
+      <button ion-button (click)="playAudio()">Play</button>
+    </div> -->
 
     <!-- <div *ngIf="clicked">
         <button ion-button round class="smallButtonRight" large (touchend)="type()">
@@ -46,7 +52,7 @@
       </ion-card> -->
 
 
-    <div>
+    <!-- <div>
       <ion-list>
         <ion-item *ngFor="let audio of audioList; index as i;">
           <p>{{audio.filename}}</p>
@@ -55,6 +61,6 @@
           </button>
         </ion-item>
       </ion-list>
-    </div>
+    </div> -->
   </div>
 </ion-content>
