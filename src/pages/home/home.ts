@@ -70,32 +70,32 @@ export class HomePage {
     alert.present();
   }
 
-  // uploadRecording() {
-  //     let loader = this.loadingCtrl.create({
-  //       content: "Uploading..."
-  //     });
-  //     loader.present();
-  //     const fileTransfer: FileTransferObject = this.transfer.create();
+  uploadRecording() {
+      let loader = this.loadingCtrl.create({
+        content: "Uploading..."
+      });
+      loader.present();
+      const fileTransfer: FileTransferObject = this.transfer.create();
     
-  //     let options: FileUploadOptions = {
-  //       fileKey: 'ionicfile',
-  //       fileName: 'ionicfile',
-  //       chunkedMode: false,
-  //       mimeType: "audio/3gp",
-  //       headers: {}
-  //     }
+      let options: FileUploadOptions = {
+        fileKey: 'ionicfile',
+        fileName: 'ionicfile',
+        chunkedMode: false,
+        mimeType: "audio/3gp",
+        headers: {}
+      }
     
-  //     fileTransfer.upload(this.filePath, this.getBaseUrl.getBaseUrl() + "/postVoiceRecordings", options)
-  //       .then((data) => {
-  //       console.log(data+" Uploaded Successfully");
-  //       loader.dismiss();
-  //       // this.presentToast("Image uploaded successfully");
-  //     }, (err) => {
-  //       console.log(err);
-  //       loader.dismiss();
-  //       // this.presentToast(err);
-  //     });
-  //   }
+      fileTransfer.upload(this.filePath, this.getBaseUrl.getBaseUrl() + "/postVoiceRecordings", options)
+        .then((data) => {
+        console.log(data+" Uploaded Successfully");
+        loader.dismiss();
+        // this.presentToast("Image uploaded successfully");
+      }, (err) => {
+        console.log(err);
+        loader.dismiss();
+        // this.presentToast(err);
+      });
+    }
     
     // const bucket = new S3(
     //       {
