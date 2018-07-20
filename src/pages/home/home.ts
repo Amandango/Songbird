@@ -47,8 +47,8 @@ export class HomePage {
     public loadingCtrl: LoadingController,
     public getBaseUrl: getBaseUrl) {
 
-    this.voiceRecord = true;
-    this.textRecord = false;
+    this.voiceRecord = false;
+    this.textRecord = true;
 
     this.lottieConfig = {
       path: "assets/animations/data.json",
@@ -70,57 +70,32 @@ export class HomePage {
     alert.present();
   }
 
-  uploadRecording() {
-      let loader = this.loadingCtrl.create({
-        content: "Uploading..."
-      });
-      loader.present();
-      const fileTransfer: FileTransferObject = this.transfer.create();
+  // uploadRecording() {
+  //     let loader = this.loadingCtrl.create({
+  //       content: "Uploading..."
+  //     });
+  //     loader.present();
+  //     const fileTransfer: FileTransferObject = this.transfer.create();
     
-      let options: FileUploadOptions = {
-        fileKey: 'ionicfile',
-        fileName: 'ionicfile',
-        chunkedMode: false,
-        mimeType: "audio/3gp",
-        headers: {}
-      }
+  //     let options: FileUploadOptions = {
+  //       fileKey: 'ionicfile',
+  //       fileName: 'ionicfile',
+  //       chunkedMode: false,
+  //       mimeType: "audio/3gp",
+  //       headers: {}
+  //     }
     
-      fileTransfer.upload(this.filePath, this.getBaseUrl.getBaseUrl() + "/postVoiceRecordings", options)
-        .then((data) => {
-        console.log(data+" Uploaded Successfully");
-        loader.dismiss();
-        // this.presentToast("Image uploaded successfully");
-      }, (err) => {
-        console.log(err);
-        loader.dismiss();
-        // this.presentToast(err);
-      });
-    }
-    
-    // const bucket = new S3(
-    //       {
-    //         accessKeyId: 'AKIAIQFKJ3XG3KXBW5WA',
-    //         secretAccessKey: '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',
-    //         region: 'us-east-1'
-    //       }
-    //     );
-  
-    //     const params = {
-    //       Bucket: 'songbird-bucket',
-    //       Key: 'recording.3gp',
-    //       Body: this.audioToStore
-    //     };
-  
-    //     bucket.upload(params, function (err, data) {
-    //       if (err) {
-    //         console.log('There was an error uploading your file: ', err);
-    //         return false;
-    //       }
-  
-    //       console.log('Successfully uploaded file.', data);
-    //       return true;
-    //     })
-
+  //     fileTransfer.upload(this.filePath, this.getBaseUrl.getBaseUrl() + "/postVoiceRecordings", options)
+  //       .then((data) => {
+  //       console.log(data+" Uploaded Successfully");
+  //       loader.dismiss();
+  //       // this.presentToast("Image uploaded successfully");
+  //     }, (err) => {
+  //       console.log(err);
+  //       loader.dismiss();
+  //       // this.presentToast(err);
+  //     });
+  //   }
     
     // console.log('recording uploading...');
 

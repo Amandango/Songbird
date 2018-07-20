@@ -6,6 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LandingPage } from '../pages/landing/landing';
 
+import * as moment from 'moment';
+
 @Component({
   templateUrl: 'app.html'
 })

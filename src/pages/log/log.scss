@@ -39,10 +39,24 @@ page-log {
         font-family: 'Poiret One';
     }
 
+    .h2 {
+        color: map-get($colors, orange);
+    }   
+
     .number {
         font-family: 'Poiret One';
         font-size: 40px;
         text-align: center;
     }
+      
+    .swiper-pagination-bullet-active {
+        opacity: 1;
+        background: map-get($colors, orange);
+      }
+
+    // .loading {
+    //     padding: 20%;
+    // }
+      
 
 }

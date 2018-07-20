@@ -17,9 +17,9 @@
             <ion-item no-lines class="momentTitle">
                 Give your moment a title!
             </ion-item>
-            <ion-textarea rows="1" [(ngModel)]="text.momentTitle"></ion-textarea>
+            <ion-textarea rows="1" [(ngModel)]="text.momentTitle" value=""></ion-textarea>
 
-            <button ion-button class="nextButton" large (click)="submitMoment()">
+            <button ion-button class="nextButton" [disabled]="text.momentText.length == 0" large (click)="submitMoment()">
                 <ion-icon name="checkmark" color="secondary" class="arrowIcon"></ion-icon>
             </button>
         </div>

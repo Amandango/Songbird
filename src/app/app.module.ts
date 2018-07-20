@@ -6,6 +6,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { LottieAnimationViewModule } from 'ng-lottie';
+import { TruncateModule } from '@yellowspot/ng-truncate';
 
 //Pages
 import { ProfilePage } from '../pages/profile/profile';
@@ -43,6 +44,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     BrowserAnimationsModule,
     HttpModule,
     LottieAnimationViewModule.forRoot(),
+    TruncateModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

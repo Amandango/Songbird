@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { getBaseUrl } from '../../getBaseUrl';
 import { Users } from '../../models/users';
@@ -7,6 +7,8 @@ import { Texts } from '../../models/texts';
 import { LogPage } from '../log/log';
 
 import { HomePage } from '../home/home';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'page-type',
@@ -21,9 +23,19 @@ export class TypePage {
 
   constructor(public navCtrl: NavController,
     public http: Http, 
-    public getBaseUrl: getBaseUrl) {
+    public getBaseUrl: getBaseUrl,
+    public alertCtrl: AlertController, ) {
     this.text.momentText = "";
-    this.text.momentTitle ="";
+    this.text.momentTitle = "";
+  }
+
+  showAlert(message) {
+    let alert = this.alertCtrl.create({
+      title: 'Error',
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   swipeEvent(e) {
@@ -44,8 +56,17 @@ export class TypePage {
           this.text.userId = this.userInfo.id;
           this.text.createdOn = new Date();
           console.log(this.text);
+
+          if(this.text.momentTitle.length == 0) {
+            this.text.momentTitle = moment(new Date()).format('ddd MM, YYYY h:mm a');
+          }
+
+          else {
+            return this.text.momentTitle.length;
+          }
           
           this.http.post(this.getBaseUrl.getBaseUrl() + "/texts", {
+            
             momentText: this.text.momentText,
             momentTitle: this.text.momentTitle,
             createdOn: this.text.createdOn,
@@ -59,12 +80,14 @@ export class TypePage {
             },
             error => {
               console.log(error);
+              this.showAlert('Sorry, could not record your moment. Please contact support for help!')
             }
           );
 
         },
         error => {
           console.log(error);
+          this.showAlert('Could not find user. Make sure you are logged in properly');
         }
       );
     }
