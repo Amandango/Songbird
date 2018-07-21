@@ -12,12 +12,16 @@
             <ion-item no-lines>
                 What are you grateful for?
             </ion-item>
-            <ion-textarea rows="5" [(ngModel)]="text.momentText"></ion-textarea>
+            <ion-item>
+                <ion-textarea autocomplete="true" spellcheck="true" rows="5" [(ngModel)]="text.momentText"></ion-textarea>
+            </ion-item>
 
             <ion-item no-lines class="momentTitle">
                 Give your moment a title!
             </ion-item>
-            <ion-textarea rows="1" [(ngModel)]="text.momentTitle" value=""></ion-textarea>
+            <ion-item>
+                <ion-textarea rows="1" autocomplete="true" spellcheck="true" [(ngModel)]="text.momentTitle" value=""></ion-textarea>
+            </ion-item>
 
             <button ion-button class="nextButton" [disabled]="text.momentText.length == 0" large (click)="submitMoment()">
                 <ion-icon name="checkmark" color="secondary" class="arrowIcon"></ion-icon>

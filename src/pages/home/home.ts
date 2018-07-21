@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, Platform, AlertController, LoadingController } from 'ionic-angular';
+import { Http } from '@angular/http';
 
 import { TypePage } from '../type/type';
 import { RecorderPage } from '../recorder/recorder';
@@ -12,8 +13,9 @@ import * as AWS from 'aws-sdk/global';
 import * as S3 from 'aws-sdk/clients/s3';
 
 import { getBaseUrl } from '../../getBaseUrl';
-
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { NgModuleCompileResult } from '@angular/compiler/src/ng_module_compiler';
+import { TemplateBindingParseResult } from '@angular/compiler';
 
 @Component({
   selector: 'page-home',
@@ -32,6 +34,7 @@ export class HomePage {
   public textRecord: boolean;
   public lottieConfig: Object;
   public audioToStore: ArrayBuffer;
+  public fileToUpload: ArrayBuffer;
 
   private animation: any;
 
@@ -45,10 +48,11 @@ export class HomePage {
     public alertCtrl: AlertController,  
     private transfer: FileTransfer, 
     public loadingCtrl: LoadingController,
-    public getBaseUrl: getBaseUrl) {
+    public getBaseUrl: getBaseUrl, 
+    public http: Http) {
 
-    this.voiceRecord = false;
-    this.textRecord = true;
+    this.voiceRecord = true;
+    this.textRecord = false;
 
     this.lottieConfig = {
       path: "assets/animations/data.json",
@@ -69,6 +73,64 @@ export class HomePage {
     });
     alert.present();
   }
+
+  uploadRecording() {
+
+    let loader = this.loadingCtrl.create({
+      content: "Uploading..."
+    });
+    loader.present();
+
+    this.audio = this.media.create(this.filePath);
+
+    this.http.post(this.getBaseUrl.getBaseUrl() + "/postVoiceRecordings", {
+        voiceRecording: this.filePath
+      })
+        .subscribe(
+          result => {
+            loader.dismiss();
+            console.log('recording posted');
+            console.log(result);
+          },
+          error => {
+            loader.dismiss();
+            console.log(error);
+          }
+        );
+
+
+    // this.file.readAsArrayBuffer(this.filePath, this.fileName).then(result => {
+    //   console.log('hi!');
+      // this.http.post(this.getBaseUrl.getBaseUrl() + "/postVoiceRecordings", {
+      //   voiceRecording: result
+      // })
+      //   .subscribe(
+      //     result => {
+      //       loader.dismiss();
+      //       console.log('recording posted');
+      //       console.log(result);
+      //     },
+      //     error => {
+      //       loader.dismiss();
+      //       console.log(error);
+      //     }
+      //   );
+
+    // })
+    // .catch(err => {
+    //   console.error('Convert error', err);
+    //   loader.dismiss()
+    // });
+    // .catch(err => Log.e(String, String))
+    }
+
+  // uploadRecording() {
+  //   let loader = this.loadingCtrl.create({
+  //           content: "Uploading..."
+  //         });
+  //         loader.present();
+  //   var fileToUpload = this.file.readAsArrayBuffer(this.filePath, this.fileName);
+  // }
 
   // uploadRecording() {
   //     let loader = this.loadingCtrl.create({
@@ -129,14 +191,16 @@ export class HomePage {
 
   stopRecord() {
     this.audio.stopRecord();
-    let data = { filename: this.fileName };
-    // this.file.readAsArrayBuffer(this.filePath, this.fileName).then(body => {
-    //   this.audioToStore = body
-    // });
-
-    this.audioList.push(data);
-    localStorage.setItem("audiolist", JSON.stringify(this.audioList));
     this.recording = false;
+    // console.log(typeof this.audio);
+    // let data = { filename: this.fileName };
+    // // this.file.readAsArrayBuffer(this.filePath, this.fileName).then(body => {
+    // //   this.audioToStore = body
+    // // });
+
+    // this.audioList.push(data);
+    // localStorage.setItem("audiolist", JSON.stringify(this.audioList));
+    
   }
 
   playAudio(file, idx) {

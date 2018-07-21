@@ -18,13 +18,22 @@ page-landing {
       //   opacity: 0;
       // }
 
+      .loginRegister {
+        padding-bottom: 20px;
+        padding-top: 30%;
+      }
+
       .loginButton {
-        padding-top: 70px;
         width: 120px;
         margin: 0 auto;
       }
 
       .registerButton {
         padding-top: 40px;
+        padding-bottom: 20px;
+      }
+
+      .form {
+        padding-top: 20px;
       }
 }

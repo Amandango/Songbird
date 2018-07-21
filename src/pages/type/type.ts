@@ -45,50 +45,54 @@ export class TypePage {
   }
 
   submitMoment(){
+
+    const promise = new Promise((resolve, reject) => {
+    });
+
     this.http.get(this.getBaseUrl.getBaseUrl() + "/User?jwt=" + localStorage.getItem("Token"),{
       })
       .subscribe(
         result => {
           this.userInfo = result.json().user;
-          console.log(this.text.momentText);
-          console.log(this.text.momentTitle);
-          console.log(this.userInfo.id);
-          this.text.userId = this.userInfo.id;
-          this.text.createdOn = new Date();
-          console.log(this.text);
-
-          if(this.text.momentTitle.length == 0) {
-            this.text.momentTitle = moment(new Date()).format('ddd MM, YYYY h:mm a');
-          }
-
-          else {
-            return this.text.momentTitle.length;
-          }
-          
-          this.http.post(this.getBaseUrl.getBaseUrl() + "/texts", {
-            
-            momentText: this.text.momentText,
-            momentTitle: this.text.momentTitle,
-            createdOn: this.text.createdOn,
-            userId: this.userInfo.id
-        })
-          .subscribe(
-            result => {
-              console.log(result);
-              this.navCtrl.popToRoot();
-              this.navCtrl.parent.select(2);
-            },
-            error => {
-              console.log(error);
-              this.showAlert('Sorry, could not record your moment. Please contact support for help!')
+          Promise.resolve(this.userInfo).then((res) => {
+            if(this.text.momentTitle.length == 0) {
+              this.text.momentTitle = moment(new Date()).format('ddd MM, YYYY h:mm a');
             }
-          );
+  
+            else {
+              return this.text.momentTitle.length;
+            }
 
-        },
+            this.text.userId = this.userInfo.id;
+            this.text.createdOn = new Date();
+
+            return this.text;
+          })
+          .then((res) => {
+            this.http.post(this.getBaseUrl.getBaseUrl() + "/texts", {
+            
+              momentText: this.text.momentText,
+              momentTitle: this.text.momentTitle,
+              createdOn: this.text.createdOn,
+              userId: this.userInfo.id
+          })
+            .subscribe(
+              result => {
+                console.log(result);
+                this.navCtrl.popToRoot();
+                this.navCtrl.parent.select(2);
+              },
+              error => {
+                console.log(error);
+                this.showAlert('Sorry, could not record your moment. Please contact support for help!')
+              }
+            );
+          })
+          })
+
         error => {
           console.log(error);
           this.showAlert('Could not find user. Make sure you are logged in properly');
         }
-      );
     }
 }

@@ -45,7 +45,7 @@
             </ion-card>
         </div>
 
-        <div *ngIf="allTexts.length > 0 && !loading">
+        <div *ngIf="allTexts.length > 0 && !loading &&!failed">
             <ion-card padding>
                 <ion-list no-lines>
                     <ion-item *ngFor="let text of allTexts" text-wrap>

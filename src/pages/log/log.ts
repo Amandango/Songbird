@@ -11,7 +11,7 @@ import { Texts } from '../../models/texts';
 export class LogPage {
 
   audioList: any[] = [];
-  public allTexts: Texts[] = [];
+  public allTexts: Array<Texts> = [];
   public allWeekTexts: Texts[] = [];
   public lottieLoadingConfig: Object;
   public loading: boolean;
@@ -58,36 +58,44 @@ export class LogPage {
   ionViewWillEnter() {
     this.getAudioList();
     this.getTexts();
+    this.getWeekTexts();
   }
 
   getTexts(){
     this.loading = true;
+    console.log(localStorage.getItem("Token"));
     this.http.get(this.getBaseUrl.getBaseUrl() + "/getTextsById?jwt=" + localStorage.getItem("Token"), {
     })
     .subscribe(
       result => {
         this.allTexts = result.json();
+        console.log(this.allTexts.length);
         console.log(this.allTexts);
-        console.log(this.allTexts[1].momentText.length);
-
-        this.http.get(this.getBaseUrl.getBaseUrl() + "/getWeekTextsById?jwt=" + localStorage.getItem("Token"), {
-        })
-        .subscribe(
-          result => {
-            this.allWeekTexts = result.json();
-            console.log(this.allWeekTexts);
-            this.loading = false;
-          },
-          error => {
-            console.log(error);
-            this.failed = true;
-          }
-        );
+        this.loading = false;
+        console.log('we got them')
       },
       error => {
         console.log(error);
         this.loading = false;
         this.failed = true;
+      }
+    );
+  }
+
+  getWeekTexts() {
+    this.loading = true;
+    this.http.get(this.getBaseUrl.getBaseUrl() + "/getWeekTextsById?jwt=" + localStorage.getItem("Token"), {
+    })
+    .subscribe(
+      result => {
+        this.allWeekTexts = result.json();
+        console.log(this.allWeekTexts);
+        this.loading = false;
+      },
+      error => {
+        console.log(error);
+        this.failed = true;
+        this.loading = false;
       }
     );
   }
