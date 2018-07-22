@@ -18,18 +18,18 @@
 
 
     <div>
-      <button ion-button round class="bigButton" (press)="switchRecord()" (click)="record()" *ngIf="voiceRecord && !recording">
+      <!-- <button ion-button round class="bigButton" (press)="switchRecord()" (click)="record()" *ngIf="voiceRecord && !recording">
           <ion-icon name="mic" large class="buttonIcons"></ion-icon>
       </button>
       <button ion-button round class="bigButton" (click)="stopRecord()" *ngIf="voiceRecord && recording">
           <lottie-animation-view [options]="lottieConfig" [width]="300" [height]="300" (animCreated)="handleAnimation($event)" class="micAnim"> </lottie-animation-view>
-      </button>
+      </button> -->
 
-      <button ion-button round class="bigButton" (press)="switchRecord()" (tap)="type()" *ngIf="textRecord && !recording">
+      <button ion-button round class="bigButton" (click)="type()" *ngIf="textRecord && !recording">
         <ion-icon name="create" large class="buttonIcons"></ion-icon>
       </button>
 
-      <button ion-button (click)="uploadRecording()">Upload recording</button>
+      <!-- <button ion-button (click)="uploadRecording()">Upload recording</button> -->
     </div>
 
     <!-- <div *ngFor="let item of audioList">

@@ -58,6 +58,12 @@ $card-ios-background-color: rgba(255,255,255,0.5);
 $card-ios-border-radius: 15px;
 $card-ios-box-shadow: 0;
 
+$text-input-ios-highlight-color-invalid: transparent;
+$text-input-ios-highlight-color-valid: transparent;
+$text-input-ios-show-invalid-highlight: transparent;
+$text-input-ios-highlight-color: transparent;
+$text-input-ios-show-valid-highlight: transparent;
+
 
 // App Material Design Variables
 // --------------------------------------------------
@@ -71,6 +77,12 @@ $tabs-md-tab-text-color: white;
 $card-md-background-color: rgba(255,255,255,0.5);
 $card-md-border-radius: 15px;
 $card-md-box-shadow: 0;
+
+$text-input-md-highlight-color-invalid: transparent;
+$text-input-md-highlight-color-valid: transparent;
+$text-input-md-show-invalid-highlight: transparent;
+$text-input-md-highlight-color: transparent;
+$text-input-md-show-valid-highlight: transparent;
 
 
 // App Windows Variables

@@ -41,12 +41,34 @@
         </div>
         <div *ngIf="allTexts.length == 0 && !loading">
             <ion-card padding text-center>
-                <h2>No moments yet! Swipe left and click the button to record a moment :)</h2>
+                <p>No moments yet! Swipe left and click the button to record a moment :)</p>
             </ion-card>
         </div>
 
         <div *ngIf="allTexts.length > 0 && !loading &&!failed">
-            <ion-card padding>
+            <ion-card padding *ngFor="let text of allTexts">
+                <ion-item>
+                    <ion-row>
+                        <ion-col>
+                                <p class="date">{{text.createdOn | date: 'shortTime'}}, {{text.createdOn | date}}</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-9>
+                            <h2 class="title" text-wrap>{{text.momentTitle}}</h2>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <p text-wrap>{{text.momentText}}</p>
+                        </ion-col>
+                    </ion-row>
+
+
+
+                </ion-item>
+            </ion-card>
+            <!-- <ion-card padding>
                 <ion-list no-lines>
                     <ion-item *ngFor="let text of allTexts" text-wrap>
                         <h2>{{text.momentTitle}}</h2>
@@ -65,7 +87,7 @@
                         </div>
                     </ion-item>
                 </ion-list>
-            </ion-card>
+            </ion-card> -->
 
             <div *ngIf="text">
                 <div *ngIf="truncating && text.length > limit">

@@ -73,6 +73,18 @@ export class LogPage {
         console.log(this.allTexts);
         this.loading = false;
         console.log('we got them')
+
+        var sortedTexts = this.allTexts.sort((a: Texts, b: Texts) => {
+          if (a.createdOn < b.createdOn) {
+            return 1;
+          }
+
+          if (a.createdOn > b.createdOn) {
+            return -1
+          }
+
+          return 0;
+        });
       },
       error => {
         console.log(error);
@@ -80,10 +92,7 @@ export class LogPage {
         this.failed = true;
       }
     );
-  }
 
-  getWeekTexts() {
-    this.loading = true;
     this.http.get(this.getBaseUrl.getBaseUrl() + "/getWeekTextsById?jwt=" + localStorage.getItem("Token"), {
     })
     .subscribe(
@@ -98,6 +107,11 @@ export class LogPage {
         this.loading = false;
       }
     );
+  }
+
+  getWeekTexts() {
+    this.loading = true;
+    
   }
 
 }

@@ -7,6 +7,7 @@ import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { LottieAnimationViewModule } from 'ng-lottie';
 import { TruncateModule } from '@yellowspot/ng-truncate';
+import { Base64 } from '@ionic-native/base64'
 
 //Pages
 import { ProfilePage } from '../pages/profile/profile';
@@ -63,6 +64,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     SplashScreen,
     getBaseUrl,
     File,
+    Base64,
     FileTransfer,
     Media,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
