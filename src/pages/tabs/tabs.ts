@@ -13,7 +13,8 @@ export class TabsPage {
   tab2Root = HomePage;
   tab3Root = LogPage;
 
-  constructor() {
+  constructor(
+  ) {
 
   }
 }

@@ -1,0 +1,46 @@
+<ion-content class="background" text-center>
+    <img src="assets/imgs/songbirdlogo.png" class="homeLogo">
+
+    <div class="form" id="reg">
+        <ion-item>
+            <ion-label color="orange" stacked>First name</ion-label>
+            <ion-input type="text" [(ngModel)]="users.firstname"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="orange" stacked>Last name</ion-label>
+            <ion-input type="text" [(ngModel)]="users.lastname"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="orange" stacked>Email</ion-label>
+            <ion-input type="email" [(ngModel)]="users.email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="orange" stacked>Password</ion-label>
+            <ion-input type="password" [(ngModel)]="users.password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="orange" stacked>Confirm password</ion-label>
+            <ion-input type="password" [(ngModel)]="confirmPassword"></ion-input>
+        </ion-item>
+
+        <div class="loginRegister">
+            <div class="loginButton">
+                <button ion-button round block color="orange" id="login" (click)="submit()">Submit</button>
+            </div>
+
+            <div>
+                <button ion-button clear outline round small color="orange" strong (click)="back()">Back</button>
+            </div>
+        </div>
+
+    </div>
+
+
+</ion-content>
+<ion-footer>
+
+</ion-footer>

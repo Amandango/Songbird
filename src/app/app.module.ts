@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 import { LottieAnimationViewModule } from 'ng-lottie';
 import { TruncateModule } from '@yellowspot/ng-truncate';
 import { Base64 } from '@ionic-native/base64'
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 //Pages
 import { ProfilePage } from '../pages/profile/profile';
@@ -17,6 +18,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { TypePage } from '../pages/type/type';
 import { RecorderPage } from '../pages/recorder/recorder';
 import { LandingPage } from '../pages/landing/landing';
+import { RegistrationPage } from '../pages/registration/registration';
 
 //Services
 import { getBaseUrl } from '../getBaseUrl';
@@ -38,7 +40,8 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     TabsPage,
     TypePage,
     RecorderPage,
-    LandingPage
+    LandingPage,
+    RegistrationPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     TabsPage,
     TypePage,
     RecorderPage,
-    LandingPage
+    LandingPage,
+    RegistrationPage
   ],
   providers: [
     StatusBar,
@@ -66,6 +70,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     File,
     Base64,
     FileTransfer,
+    NativePageTransitions,
     Media,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

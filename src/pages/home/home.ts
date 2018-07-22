@@ -19,6 +19,8 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { NgModuleCompileResult } from '@angular/compiler/src/ng_module_compiler';
 import { TemplateBindingParseResult } from '@angular/compiler';
 
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -52,7 +54,8 @@ export class HomePage {
     public loadingCtrl: LoadingController,
     public getBaseUrl: getBaseUrl,
     public http: Http,
-    private base64: Base64) {
+    private base64: Base64,
+    public nativePageTransitions: NativePageTransitions) {
 
     this.voiceRecord = false;
     this.textRecord = true;
@@ -93,5 +96,28 @@ export class HomePage {
           this.navCtrl.parent.select(0);
         }
       }
+
+      ionViewWillLeave() {
+
+        let options: NativeTransitionOptions = {
+           direction: 'up',
+           duration: 300,
+           slowdownfactor: 1,
+           slidePixels: 20,
+           iosdelay: 100,
+           androiddelay: 10,
+           fixedPixelsTop: 70,
+           fixedPixelsBottom: 60
+          };
+       
+        this.nativePageTransitions.slide(options)
+          .then( result => {
+            console.log('success' + result);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+       
+       }
 
     }

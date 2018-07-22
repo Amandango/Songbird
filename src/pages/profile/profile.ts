@@ -6,6 +6,8 @@ import { Users } from '../../models/users';
 import { LandingPage } from '../landing/landing';
 import {App} from 'ionic-angular';
 
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html'
@@ -23,7 +25,8 @@ export class ProfilePage {
     public navCtrl: NavController,
     public http: Http,
     public getBaseUrl: getBaseUrl,
-    public app: App) {
+    public app: App,
+    public nativePageTransitions: NativePageTransitions) {
 
     this.currentUser = new Users();
     this.currentUser.firstname = "";
@@ -77,4 +80,27 @@ export class ProfilePage {
     this.navCtrl.popToRoot();
     localStorage.removeItem("Token");
   }
+
+  ionViewWillLeave() {
+
+    let options: NativeTransitionOptions = {
+       direction: 'up',
+       duration: 300,
+       slowdownfactor: 1,
+       slidePixels: 20,
+       iosdelay: 100,
+       androiddelay: 10,
+       fixedPixelsTop: 70,
+       fixedPixelsBottom: 60
+      };
+   
+    this.nativePageTransitions.slide(options)
+      .then( result => {
+        console.log('success' + result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+   
+   }
 }

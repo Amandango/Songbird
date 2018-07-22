@@ -4,6 +4,8 @@ import { Http } from '@angular/http';
 import { getBaseUrl } from '../../getBaseUrl';
 import { Texts } from '../../models/texts';
 
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+
 @Component({
   selector: 'page-log',
   templateUrl: 'log.html'
@@ -23,7 +25,8 @@ export class LogPage {
 
   constructor(public navCtrl: NavController,
     public http: Http,
-    public getBaseUrl: getBaseUrl) {
+    public getBaseUrl: getBaseUrl,
+    public nativePageTransitions: NativePageTransitions) {
 
       this.loading = false;
       this.failed = false;
@@ -113,7 +116,29 @@ export class LogPage {
 
   getWeekTexts() {
     this.loading = true;
-    
   }
+
+  ionViewWillLeave() {
+
+    let options: NativeTransitionOptions = {
+       direction: 'up',
+       duration: 300,
+       slowdownfactor: 1,
+       slidePixels: 20,
+       iosdelay: 100,
+       androiddelay: 10,
+       fixedPixelsTop: 70,
+       fixedPixelsBottom: 60
+      };
+   
+    this.nativePageTransitions.slide(options)
+      .then( result => {
+        console.log('success' + result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+   
+   }
 
 }

@@ -26,6 +26,7 @@
     "@ionic-native/file": "^4.9.1",
     "@ionic-native/file-transfer": "^4.9.2",
     "@ionic-native/media": "^4.9.1",
+    "@ionic-native/native-page-transitions": "^4.10.0",
     "@ionic-native/splash-screen": "4.7.0",
     "@ionic-native/status-bar": "4.7.0",
     "@ionic/pro": "1.0.20",
@@ -34,6 +35,7 @@
     "@yellowspot/ng-truncate": "^1.4.0",
     "aws-sdk": "^2.275.1",
     "com-badrit-base64": "^0.2.0",
+    "com.telerik.plugins.nativepagetransitions": "^0.6.5",
     "cordova": "^8.0.0",
     "cordova-android": "7.0.0",
     "cordova-plugin-device": "^2.0.2",
@@ -70,7 +72,8 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-file-transfer": {},
       "com-badrit-base64": {},
-      "cordova-plugin-media-capture": {}
+      "cordova-plugin-media-capture": {},
+      "com.telerik.plugins.nativepagetransitions": {}
     },
     "platforms": [
       "android"

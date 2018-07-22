@@ -1,10 +1,11 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { NavController, ToastController} from 'ionic-angular';
+import { NavController, ToastController, NavParams, LoadingController } from 'ionic-angular';
 import { Login } from '../../models/login';
 import { Http } from '@angular/http';
 import { getBaseUrl } from '../../getBaseUrl';
 import { TabsPage } from '../tabs/tabs';
 import { Users } from '../../models/users';
+import { RegistrationPage } from '../registration/registration';
 import {
   trigger,
   state,
@@ -25,61 +26,82 @@ export class LandingPage {
   public registerForm: boolean = false;
   public users: Users;
   public confirmPassword: string;
+  public toast: boolean;
+  public loginInfo: Object;
+  public loader: any;
 
   constructor(
     public navCtrl: NavController,
     public http: Http,
     public getBaseUrl: getBaseUrl,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    public navParams: NavParams,
+    public loadingCtrl: LoadingController
   ) {
     this.loginModel = new Login();
     this.users = new Users();
+    this.loginModel.email = this.navParams.get('email');
+    this.loginModel.password = this.navParams.get('email')
+    this.toast = this.navParams.get('toast');
+    this.loader = this.loadingCtrl.create({
+      content: "Logging in..."
+    });
+
+    console.log(this.loginModel.email);
 
     if (localStorage.getItem("Token")) {
       this.navCtrl.setRoot(TabsPage);
     }
   }
 
+  ionViewWillEnter() {
+    if (this.toast == true) {
+      this.presentToast()
+    }
+  }
+
   login() {
-    this.http.post(this.getBaseUrl.getBaseUrl() + "/login", {
-      email: this.loginModel.email,
-      password: this.loginModel.password
+    this.loader.present().then(result => {
+      this.http.post(this.getBaseUrl.getBaseUrl() + "/login", {
+        email: this.loginModel.email,
+        password: this.loginModel.password
+      })
+        .subscribe(
+          result => {
+            var Usertoken = result.json();
+            localStorage.setItem("Token", Usertoken.token);
+            this.navCtrl.setRoot(TabsPage);
+            this.navCtrl.popToRoot();
+            this.loader.dismiss();
+          },
+          error => {
+            console.log(error);
+            this.loader.dismiss();
+          }
+        );
     })
-      .subscribe(
-        result => {
-          var Usertoken = result.json();
-          localStorage.setItem("Token", Usertoken.token);
-          this.navCtrl.setRoot(TabsPage);
-          this.navCtrl.popToRoot();
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   presentToast() {
     let toast = this.toastCtrl.create({
-      message: 'Thanks for registering! Login to get started',
+      message: 'Thanks for joining the Songbird community! Login to get started',
       duration: 3000,
-      position: 'bottom'
+      position: 'top',
+      cssClass: "toast",
     });
-  
+
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');
     });
-  
+
     toast.present();
   }
 
   register() {
-    this.loginForm = false;
-    this.registerForm = true;
-    this.users.email = "";
-    this.users.password = "";
-    this.users.firstname = "";
-    this.users.lastname = "";
-    this.confirmPassword = "";
+    this.navCtrl.push(RegistrationPage);
   }
 
   submit() {
@@ -87,7 +109,7 @@ export class LandingPage {
       email: this.users.email,
       password: this.users.password,
       firstname: this.users.firstname,
-      lastname: this.users.lastname, 
+      lastname: this.users.lastname,
     })
       .subscribe(
         result => {
