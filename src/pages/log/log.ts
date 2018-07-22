@@ -63,28 +63,30 @@ export class LogPage {
 
   getTexts(){
     this.loading = true;
+    this.failed = false;
     console.log(localStorage.getItem("Token"));
     this.http.get(this.getBaseUrl.getBaseUrl() + "/getTextsById?jwt=" + localStorage.getItem("Token"), {
     })
     .subscribe(
       result => {
+        this.loading = false;
+        this.failed = false;
         this.allTexts = result.json();
         console.log(this.allTexts.length);
         console.log(this.allTexts);
-        this.loading = false;
         console.log('we got them')
 
-        // var sortedTexts = this.allTexts.sort((a: Texts, b: Texts) => {
-        //   if (a.createdOn < b.createdOn) {
-        //     return 1;
-        //   }
+        var sortedTexts = this.allTexts.sort((a: Texts, b: Texts) => {
+          if (a.createdOn < b.createdOn) {
+            return 1;
+          }
 
-        //   if (a.createdOn > b.createdOn) {
-        //     return -1
-        //   }
+          if (a.createdOn > b.createdOn) {
+            return -1
+          }
 
-        //   return 0;
-        // });
+          return 0;
+        });
       },
       error => {
         console.log(error);
@@ -93,20 +95,20 @@ export class LogPage {
       }
     );
 
-    this.http.get(this.getBaseUrl.getBaseUrl() + "/getWeekTextsById?jwt=" + localStorage.getItem("Token"), {
-    })
-    .subscribe(
-      result => {
-        this.allWeekTexts = result.json();
-        console.log(this.allWeekTexts);
-        this.loading = false;
-      },
-      error => {
-        console.log(error);
-        this.failed = true;
-        this.loading = false;
-      }
-    );
+    // this.http.get(this.getBaseUrl.getBaseUrl() + "/getWeekTextsById?jwt=" + localStorage.getItem("Token"), {
+    // })
+    // .subscribe(
+    //   result => {
+    //     this.allWeekTexts = result.json();
+    //     console.log(this.allWeekTexts);
+    //     this.loading = false;
+    //   },
+    //   error => {
+    //     console.log(error);
+    //     this.failed = true;
+    //     this.loading = false;
+    //   }
+    // );
   }
 
   getWeekTexts() {
