@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController} from 'ionic-angular';
 import { Login } from '../../models/login';
 import { Http } from '@angular/http';
 import { getBaseUrl } from '../../getBaseUrl';
@@ -24,14 +24,17 @@ export class LandingPage {
   public loginForm: boolean = true;
   public registerForm: boolean = false;
   public users: Users;
+  public confirmPassword: string;
 
   constructor(
     public navCtrl: NavController,
     public http: Http,
     public getBaseUrl: getBaseUrl,
+    private toastCtrl: ToastController
   ) {
     this.loginModel = new Login();
     this.users = new Users();
+
     if (localStorage.getItem("Token")) {
       this.navCtrl.setRoot(TabsPage);
     }
@@ -55,9 +58,28 @@ export class LandingPage {
       );
   }
 
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Thanks for registering! Login to get started',
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+  }
+
   register() {
     this.loginForm = false;
     this.registerForm = true;
+    this.users.email = "";
+    this.users.password = "";
+    this.users.firstname = "";
+    this.users.lastname = "";
+    this.confirmPassword = "";
   }
 
   submit() {
@@ -75,6 +97,7 @@ export class LandingPage {
           this.registerForm = false;
           this.loginModel.email = this.users.email;
           this.loginModel.password = this.users.password;
+          this.presentToast();
         },
         error => {
           console.log(error);

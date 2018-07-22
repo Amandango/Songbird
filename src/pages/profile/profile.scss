@@ -5,4 +5,32 @@ page-profile {
         width: 100%;
         height: 100%;
     }
+
+    .name {
+        font-family: 'Poiret One';
+        // color: map-get($colors, orange);
+    }
+
+    .nameContent {
+        margin-top: 60px;
+    }
+
+    .header {
+        color: map-get($colors, orange);
+        font-weight: bold;
+        display: relative;
+        float: right;
+    }
+
+    .emailContent {
+        width: 60%;
+        margin: 80px auto;
+    }
+
+    .logoutButton {
+        width: 120px;
+        margin: 0 auto;
+      }
+
 }
+

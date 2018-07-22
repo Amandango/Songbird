@@ -9,5 +9,29 @@
 
 <ion-content padding (swipe)="swipeEvent($event)">
   <div class="allContent" on-swipe="swipeEvent($event)">
+
+    <div *ngIf="loading && !failed">
+      <lottie-animation-view [options]="lottieLoadingConfig" [width]="300" [height]="300" (animCreated)="handleAnimation($event)">
+      </lottie-animation-view>
+    </div>
+
+    <div text-center *ngIf="!loading && !failed" class="nameContent">
+      <h1 class="name">{{currentUser.firstname}} {{currentUser.lastname}}</h1>
+
+      <div class="emailContent">
+        <ion-row>
+          <ion-col col-2>
+            <span class="header">Email</span>
+          </ion-col>
+          <ion-col col-10 text-wrap>
+            <span class="emailText">{{currentUser.email}}</span>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div class="logoutButton">
+          <button ion-button round block color="orange" id="login" (click)="logout()">Logout</button>
+      </div>
+    </div>
   </div>
 </ion-content>
