@@ -74,17 +74,17 @@ export class LogPage {
         this.loading = false;
         console.log('we got them')
 
-        var sortedTexts = this.allTexts.sort((a: Texts, b: Texts) => {
-          if (a.createdOn < b.createdOn) {
-            return 1;
-          }
+        // var sortedTexts = this.allTexts.sort((a: Texts, b: Texts) => {
+        //   if (a.createdOn < b.createdOn) {
+        //     return 1;
+        //   }
 
-          if (a.createdOn > b.createdOn) {
-            return -1
-          }
+        //   if (a.createdOn > b.createdOn) {
+        //     return -1
+        //   }
 
-          return 0;
-        });
+        //   return 0;
+        // });
       },
       error => {
         console.log(error);

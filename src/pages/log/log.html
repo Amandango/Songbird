@@ -46,7 +46,7 @@
         </div>
 
         <div *ngIf="allTexts.length > 0 && !loading &&!failed">
-            <ion-card padding *ngFor="let text of sortedTexts">
+            <ion-card padding *ngFor="let text of allTexts">
                 <ion-item>
                     <ion-row>
                         <ion-col>
