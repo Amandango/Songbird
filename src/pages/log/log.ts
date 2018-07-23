@@ -33,7 +33,7 @@ export class LogPage {
     this.failed = false;
     this.limit = 40;
     this.truncating = true;
-    // this.streak = 0;
+    this.streak = 0;
 
     this.lottieLoadingConfig = {
       path: "assets/animations/loading2.json",
@@ -63,6 +63,7 @@ export class LogPage {
   ionViewWillEnter() {
     this.getAudioList();
     this.getTexts();
+    // this.getStreak();
     // this.getWeekTexts();
   }
 
@@ -163,4 +164,23 @@ export class LogPage {
   //     )
 
   // }
+
+  // getStreak() {
+  //   this.loading = true;
+  //   this.failed = false;
+  //   this.http.get(this.getBaseUrl.getBaseUrl() + "/streaks?jwt=" + localStorage.getItem("Token"), {
+  //   })
+  //     .subscribe(
+  //       result => {
+  //         this.loading = false;
+  //         this.failed = false;
+  //         this.streak = result.json();
+  //       }
+  //         );
+  //       error => {
+  //         console.log(error);
+  //         this.loading = false;
+  //         this.failed = true;
+  //       }
+  //   }
 }

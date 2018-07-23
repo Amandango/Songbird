@@ -41,7 +41,7 @@ export class LandingPage {
     this.loginModel = new Login();
     this.users = new Users();
     this.loginModel.email = this.navParams.get('email');
-    this.loginModel.password = this.navParams.get('email')
+    this.loginModel.password = this.navParams.get('password')
     this.toast = this.navParams.get('toast');
     this.loader = this.loadingCtrl.create({
       content: "Logging in..."
