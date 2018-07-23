@@ -63,7 +63,7 @@ export class LogPage {
   ionViewWillEnter() {
     this.getAudioList();
     this.getTexts();
-    this.getWeekTexts();
+    // this.getWeekTexts();
   }
 
   getTexts() {
@@ -101,23 +101,23 @@ export class LogPage {
       );
   }
 
-  getWeekTexts() {
-    this.loading = true;
-    this.http.get(this.getBaseUrl.getBaseUrl() + "/getWeekTextsById?jwt=" + localStorage.getItem("Token"), {
-    })
-    .subscribe(
-      result => {
-        this.allWeekTexts = result.json();
-        console.log(this.allWeekTexts);
-        this.loading = false;
-      },
-      error => {
-        console.log(error);
-        this.failed = true;
-        this.loading = false;
-      }
-    );
-  }
+  // getWeekTexts() {
+  //   this.loading = true;
+  //   this.http.get(this.getBaseUrl.getBaseUrl() + "/getWeekTextsById?jwt=" + localStorage.getItem("Token"), {
+  //   })
+  //   .subscribe(
+  //     result => {
+  //       this.allWeekTexts = result.json();
+  //       console.log(this.allWeekTexts);
+  //       this.loading = false;
+  //     },
+  //     error => {
+  //       console.log(error);
+  //       this.failed = true;
+  //       this.loading = false;
+  //     }
+  //   );
+  // }
 
   ionViewWillLeave() {
 
