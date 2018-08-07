@@ -89,4 +89,5 @@
     <allow-navigation href="http://192.168.1.66:8100" />
     <allow-navigation href="http://192.168.1.65:8101" />
     <allow-navigation href="http://192.168.1.65:8100" />
+    <plugin name="cordova-plugin-media-capture" spec="^3.0.2" />
 </widget>

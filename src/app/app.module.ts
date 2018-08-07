@@ -9,6 +9,7 @@ import { LottieAnimationViewModule } from 'ng-lottie';
 import { TruncateModule } from '@yellowspot/ng-truncate';
 import { Base64 } from '@ionic-native/base64'
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
 
 //Pages
 import { ProfilePage } from '../pages/profile/profile';
@@ -71,6 +72,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     Base64,
     FileTransfer,
     NativePageTransitions,
+    MediaCapture,
     Media,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

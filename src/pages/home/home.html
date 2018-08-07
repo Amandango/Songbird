@@ -9,6 +9,10 @@
 <ion-content padding text-center class="background">
   <div class="allContent" on-swipe="swipeEvent($event)">
 
+    <div>
+      <button ion-button (click)="record()"> RECORD </button>
+    </div>
+
     <!-- <div *ngIf="clicked">
         <button ion-button round class="smallButtonLeft" large (touchend)="record()">
             <ion-icon name="mic" large></ion-icon>
