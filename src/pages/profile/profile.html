@@ -10,6 +10,15 @@
 <ion-content padding (swipe)="swipeEvent($event)">
   <div class="allContent" on-swipe="swipeEvent($event)">
 
+      <div *ngIf="failed" text-center padding>
+          <div class="allContent" on-swipe="swipeEvent($event)">
+              <lottie-animation-view [options]="lottieFailedConfig" [width]="300" [height]="300" (animCreated)="handleAnimation($event)">
+              </lottie-animation-view>
+              <h1>Oops! </h1>
+              <p>Something went wrong fetching your profile. Try again in a bit, or contact support for help.</p>
+          </div>
+      </div>
+
     <div *ngIf="loading && !failed">
       <lottie-animation-view [options]="lottieLoadingConfig" [width]="300" [height]="300" (animCreated)="handleAnimation($event)">
       </lottie-animation-view>

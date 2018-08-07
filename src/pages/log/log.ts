@@ -16,6 +16,7 @@ export class LogPage {
   public allTexts: Array<Texts> = [];
   public allWeekTexts: Texts[] = [];
   public lottieLoadingConfig: Object;
+  public lottieFailedConfig: Object;
   public loading: boolean;
   public failed: boolean;
   public truncating: boolean;
@@ -37,6 +38,12 @@ export class LogPage {
 
     this.lottieLoadingConfig = {
       path: "assets/animations/loading2.json",
+      autoplay: true,
+      loop: true
+    };
+
+    this.lottieFailedConfig = {
+      path: "assets/animations/failWhale.json",
       autoplay: true,
       loop: true
     };

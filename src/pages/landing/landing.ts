@@ -47,8 +47,6 @@ export class LandingPage {
       content: "Logging in..."
     });
 
-    console.log(this.loginModel.email);
-
     if (localStorage.getItem("Token")) {
       this.navCtrl.setRoot(TabsPage);
     }

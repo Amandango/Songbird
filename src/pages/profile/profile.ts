@@ -16,6 +16,7 @@ export class ProfilePage {
 
   public currentUser: Users;
   public lottieLoadingConfig: Object;
+  public lottieFailedConfig: Object;
   public loading: boolean;
   public failed: boolean;
 
@@ -37,6 +38,12 @@ export class ProfilePage {
 
     this.lottieLoadingConfig = {
       path: "assets/animations/loading2.json",
+      autoplay: true,
+      loop: true
+    };
+
+    this.lottieFailedConfig = {
+      path: "assets/animations/failWhale.json",
       autoplay: true,
       loop: true
     };

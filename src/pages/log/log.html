@@ -7,9 +7,21 @@
 </ion-header>
 
 <ion-content padding>
-    <div *ngIf="!loading">
-        <ion-card>
-            <!-- <ion-slides pager>
+
+    <div *ngIf="failed" text-center padding>
+        <div class="allContent" on-swipe="swipeEvent($event)">
+            <lottie-animation-view [options]="lottieFailedConfig" [width]="300" [height]="300" (animCreated)="handleAnimation($event)">
+            </lottie-animation-view>
+            <h1>Oops! </h1>
+            <p>Something went wrong fetching your moments. Try again in a bit, or contact support for help.</p>
+        </div>
+    </div>
+
+    <div *ngIf="!failed">
+
+        <div *ngIf="!loading">
+            <ion-card>
+                <!-- <ion-slides pager>
                 <ion-slide padding>
                     <ion-card-header text-center>
                         <h2 class="momentsWeekTitle">Moments this week:</h2>
@@ -21,54 +33,54 @@
                     </ion-card-content>
                 </ion-slide>
                 <ion-slide padding> -->
-                    <ion-card-header text-center>
-                        <h2 class="momentsWeekTitle">All moments:</h2>
-                    </ion-card-header>
-                    <ion-card-content>
-                        <div class="number">
-                            {{allTexts.length}}
-                        </div>
-                    </ion-card-content>
+                <ion-card-header text-center>
+                    <h2 class="momentsWeekTitle">All moments:</h2>
+                </ion-card-header>
+                <ion-card-content>
+                    <div class="number">
+                        {{allTexts.length}}
+                    </div>
+                </ion-card-content>
                 <!-- </ion-slide>
             </ion-slides> -->
-        </ion-card>
-    </div>
-
-    <div class="allContent" on-swipe="swipeEvent($event)">
-        <div *ngIf="loading" class="loading">
-            <lottie-animation-view [options]="lottieLoadingConfig" [width]="300" [height]="300" (animCreated)="handleAnimation($event)">
-            </lottie-animation-view>
-        </div>
-        <div *ngIf="allTexts.length == 0 && !loading">
-            <ion-card padding text-center>
-                <p>No moments yet! Swipe left and click the button to record a moment :)</p>
             </ion-card>
         </div>
 
-        <div *ngIf="allTexts.length > 0 && !loading && !failed">
-            <ion-card padding *ngFor="let text of allTexts">
-                <ion-item>
-                    <ion-row>
-                        <ion-col>
+        <div class="allContent" on-swipe="swipeEvent($event)">
+            <div *ngIf="loading" class="loading">
+                <lottie-animation-view [options]="lottieLoadingConfig" [width]="300" [height]="300" (animCreated)="handleAnimation($event)">
+                </lottie-animation-view>
+            </div>
+            <div *ngIf="allTexts.length == 0 && !loading">
+                <ion-card padding text-center>
+                    <p>No moments yet! Swipe left and click the button to record a moment :)</p>
+                </ion-card>
+            </div>
+
+            <div *ngIf="allTexts.length > 0 && !loading">
+                <ion-card padding *ngFor="let text of allTexts">
+                    <ion-item>
+                        <ion-row>
+                            <ion-col>
                                 <p class="date">{{text.createdOn | date: 'shortTime'}}, {{text.createdOn | date}}</p>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col col-9>
-                            <h2 class="title" text-wrap>{{text.momentTitle}}</h2>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <p text-wrap>{{text.momentText}}</p>
-                        </ion-col>
-                    </ion-row>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col col-9>
+                                <h2 class="title" text-wrap>{{text.momentTitle}}</h2>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <p text-wrap>{{text.momentText}}</p>
+                            </ion-col>
+                        </ion-row>
 
 
 
-                </ion-item>
-            </ion-card>
-            <!-- <ion-card padding>
+                    </ion-item>
+                </ion-card>
+                <!-- <ion-card padding>
                 <ion-list no-lines>
                     <ion-item *ngFor="let text of allTexts" text-wrap>
                         <h2>{{text.momentTitle}}</h2>
@@ -89,14 +101,15 @@
                 </ion-list>
             </ion-card> -->
 
-            <div *ngIf="text">
-                <div *ngIf="truncating && text.length > limit">
-                    {{text | truncate : 40}}
-                    <button ion-button (click)="truncating = false">show more</button>
-                </div>
-                <div *ngIf="!truncating && text.length > limit">
-                    {{text}}
-                    <button ion-button (click)="truncating = true">show less</button>
+                <div *ngIf="text">
+                    <div *ngIf="truncating && text.length > limit">
+                        {{text | truncate : 40}}
+                        <button ion-button (click)="truncating = false">show more</button>
+                    </div>
+                    <div *ngIf="!truncating && text.length > limit">
+                        {{text}}
+                        <button ion-button (click)="truncating = true">show less</button>
+                    </div>
                 </div>
             </div>
         </div>

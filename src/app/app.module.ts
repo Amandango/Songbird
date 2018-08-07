@@ -32,6 +32,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
+class MediaMock extends Media {
+  record() {
+    return new Promise((resolve, reject) => {
+      resolve("BASE_64_ENCODED_DATA_GOES_HERE");
+    })
+  }
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -74,7 +82,8 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     NativePageTransitions,
     MediaCapture,
     Media,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: Media, useClass: MediaMock}
   ]
 })
 export class AppModule {}
