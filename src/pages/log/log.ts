@@ -70,9 +70,9 @@ export class LogPage {
   ionViewWillEnter() {
     this.getAudioList();
     this.getTexts();
-    // this.getStreak();
-    // this.getWeekTexts();
   }
+
+  //Gets all recorded moments for user
 
   getTexts() {
     this.loading = true;
@@ -109,24 +109,6 @@ export class LogPage {
       );
   }
 
-  // getWeekTexts() {
-  //   this.loading = true;
-  //   this.http.get(this.getBaseUrl.getBaseUrl() + "/getWeekTextsById?jwt=" + localStorage.getItem("Token"), {
-  //   })
-  //   .subscribe(
-  //     result => {
-  //       this.allWeekTexts = result.json();
-  //       console.log(this.allWeekTexts);
-  //       this.loading = false;
-  //     },
-  //     error => {
-  //       console.log(error);
-  //       this.failed = true;
-  //       this.loading = false;
-  //     }
-  //   );
-  // }
-
   ionViewWillLeave() {
 
     let options: NativeTransitionOptions = {
@@ -150,44 +132,4 @@ export class LogPage {
 
   }
 
-  // getStreak() {
-  //   console.log('streakrunning');
-  //   this.http.get(this.getBaseUrl.getBaseUrl() + "/streak?jwt=" + localStorage.getItem("Token"), {
-  //   })
-  //     .subscribe(
-  //       result => {
-  //         this.loading = false;
-  //         this.failed = false;
-  //         var streaks = result.json();
-  //         console.log(streaks)
-
-  //       },
-
-  //       error => {
-  //         console.log(error);
-  //         this.loading = false;
-  //         this.failed = true;
-  //       }
-  //     )
-
-  // }
-
-  // getStreak() {
-  //   this.loading = true;
-  //   this.failed = false;
-  //   this.http.get(this.getBaseUrl.getBaseUrl() + "/streaks?jwt=" + localStorage.getItem("Token"), {
-  //   })
-  //     .subscribe(
-  //       result => {
-  //         this.loading = false;
-  //         this.failed = false;
-  //         this.streak = result.json();
-  //       }
-  //         );
-  //       error => {
-  //         console.log(error);
-  //         this.loading = false;
-  //         this.failed = true;
-  //       }
-  //   }
 }

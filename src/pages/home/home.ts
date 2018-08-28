@@ -8,19 +8,14 @@ import { ProfilePage } from '../profile/profile';
 
 import { Media, MediaObject } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
-import { Base64 } from '@ionic-native/base64';
-
-import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 import * as AWS from 'aws-sdk/global';
 import * as S3 from 'aws-sdk/clients/s3';
 
 import { getBaseUrl } from '../../getBaseUrl';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-import { NgModuleCompileResult } from '@angular/compiler/src/ng_module_compiler';
-import { TemplateBindingParseResult } from '@angular/compiler';
 
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 @Component({
   selector: 'page-home',
@@ -43,21 +38,17 @@ export class HomePage {
 
   private animation: any;
 
-  public FOLDER = 'sb-s3/';
-
   constructor(
     public navCtrl: NavController,
     private media: Media,
     private file: File,
     public platform: Platform,
     public alertCtrl: AlertController,
-    private transfer: FileTransfer,
     public loadingCtrl: LoadingController,
     public getBaseUrl: getBaseUrl,
     public http: Http,
-    private base64: Base64,
     public nativePageTransitions: NativePageTransitions,
-    private mediaCapture: MediaCapture) {
+    private camera: Camera) {
 
     this.voiceRecord = false;
     this.textRecord = true;
@@ -90,6 +81,8 @@ export class HomePage {
     this.navCtrl.popToRoot()
   }
 
+  //Swipe between profile, record page, and home
+
   swipeEvent(e) {
     if (e.direction == '2') {
       this.navCtrl.parent.select(2);
@@ -99,16 +92,9 @@ export class HomePage {
     }
   }
 
-  // captureImage() {
-  //   let options: CaptureImageOptions = { limit: 3 };
-  //   this.mediaCapture.captureImage(options)
-  //     .then(
-  //       (data: MediaFile[]) => console.log(data),
-  //       (err: CaptureError) => console.error(err)
-  //     );
-  // }
-
   ionViewWillLeave() {
+
+    //Adding smooth page transitions on native
 
     let options: NativeTransitionOptions = {
       direction: 'up',
@@ -128,20 +114,43 @@ export class HomePage {
       .catch(err => {
         console.log(err);
       });
+  };
+
+  //Take a photo
+
+  takePhoto() {
+
+    console.log('taking photo ran');
+
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+     }, (err) => {
+      // Handle error
+     });
   }
+
+  //Record a voice recording
 
   record() {
 
     try {
       if (this.platform.is('ios')) {
         this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() + new Date().getHours() + new Date().getMinutes() + new Date().getSeconds() + '.3gp';
-        this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + this.fileName;
         this.audio = this.media.create(this.fileName);
       } else if (this.platform.is('android')) {
         this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() + new Date().getHours() + new Date().getMinutes() + new Date().getSeconds() + '.3gp';
-        this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + this.fileName;
-        this.audio = this.media.create(this.filePath);
+        this.audio = this.media.create(this.fileName);
       }
+
       this.audio.startRecord();
       this.recording = true;
     }
@@ -149,6 +158,8 @@ export class HomePage {
       this.showAlert('Sorry, could not start recording. Contact us for support!')
     }
   }
+
+  //End voice recording
 
   stopRecord() {
     this.audio.stopRecord();
@@ -161,112 +172,6 @@ export class HomePage {
     this.audioList.push(data);
     localStorage.setItem("audiolist", JSON.stringify(this.audioList));
   }
-
-  //Trying to transfer file to API using file transfer
-
-  // uploadRecording() {
-
-  // const fileTransfer: FileTransferObject = this.transfer.create();
-
-  // let options: FileUploadOptions = {
-  //   fileKey: 'file',
-  //   fileName: 'name.jpg',
-  // };
-
-  // fileTransfer.upload(this.filePath, this.getBaseUrl.getBaseUrl() + "/postVoiceRecordings")
-  //   .then(data => {
-  //     console.log('success!');
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
-
-  // }
-
-  //Trying to convert to base64 file, then posting that 
-
-  // uploadRecording() {
-
-  //   this.audio = this.media.create(this.filePath);
-  //   this.base64.encodeFile(this.filePath).then((base64File: string) => {
-  //     console.log(base64File);
-  //     this.http.post(this.getBaseUrl.getBaseUrl() + "/postVoiceRecordings", {
-  //       voiceRecording: base64File
-  //     })
-  //       .subscribe(
-  //         result => {
-  //           loader.dismiss();
-  //           console.log('recording posted');
-  //           console.log(result);
-  //         },
-  //         error => {
-  //           loader.dismiss();
-  //           console.log(error);
-  //         }
-  //       );
-  //   }, (err) => {
-  //     console.log(err);
-  //   });
-
-  // }
-
-  //Trying to convert to Array Buffer
-
-  // uploadRecording() {
-
-  //   this.file.readAsArrayBuffer(this.filePath, this.fileName).then(result => {
-  //     console.log('hi!');
-  //     this.http.post(this.getBaseUrl.getBaseUrl() + "/postVoiceRecordings", {
-  //       voiceRecording: result
-  //     })
-  //       .subscribe(
-  //         result => {
-  //           loader.dismiss();
-  //           console.log('recording posted');
-  //           console.log(result);
-  //         },
-  //         error => {
-  //           loader.dismiss();
-  //           console.log(error);
-  //         }
-  //       );
-
-  //   })
-  //     .catch(err => {
-  //       console.error('Convert error', err);
-  //       loader.dismiss()
-  //     });
-  // }
-
-  //Trying to create file transfer object and transfering file
-
-  // uploadRecording() {
-
-  //   let loader = this.loadingCtrl.create({
-  //     content: "Uploading..."
-  //   });
-  //   loader.present();
-  //   const fileTransfer: FileTransferObject = this.transfer.create();
-
-  //   let options: FileUploadOptions = {
-  //     fileKey: 'ionicfile',
-  //     fileName: 'ionicfile',
-  //     chunkedMode: false,
-  //     mimeType: "audio/3gp",
-  //     headers: {}
-  //   }
-
-  //   fileTransfer.upload(this.filePath, this.getBaseUrl.getBaseUrl() + "/postVoiceRecordings", options)
-  //     .then((data) => {
-  //       console.log(data + " Uploaded Successfully");
-  //       loader.dismiss();
-  //       // this.presentToast("Image uploaded successfully");
-  //     }, (err) => {
-  //       console.log(err);
-  //       loader.dismiss();
-  //       // this.presentToast(err);
-  //     });
-  // }
 
   //Play audio saved on local storage
 
@@ -282,6 +187,8 @@ export class HomePage {
     this.audio.play();
     this.audio.setVolume(0.8);
   }
+
+  //Switches between voice recording and text input
 
   switchRecord() {
     this.voiceRecord = !this.voiceRecord;

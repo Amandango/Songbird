@@ -10,6 +10,7 @@ import { TruncateModule } from '@yellowspot/ng-truncate';
 import { Base64 } from '@ionic-native/base64'
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 //Pages
 import { ProfilePage } from '../pages/profile/profile';
@@ -32,13 +33,21 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
-class MediaMock extends Media {
-  record() {
-    return new Promise((resolve, reject) => {
-      resolve("BASE_64_ENCODED_DATA_GOES_HERE");
-    })
-  }
-}
+// class MediaMock extends Media {
+//   create(options) {
+//     return new Promise((resolve, reject) => {
+//       resolve();
+//     })
+//   }
+// }
+
+// class CameraMock extends Camera {
+//   getPicture(options) {
+//     return new Promise((resolve, reject) => {
+//       resolve(base64image);
+//     })
+//   }
+// }
 
 @NgModule({
   declarations: [
@@ -82,8 +91,10 @@ class MediaMock extends Media {
     NativePageTransitions,
     MediaCapture,
     Media,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: Media, useClass: MediaMock}
+    // {provide: Media, useClass: MediaMock},
+    // {provide: Camera, useClass: CameraMock}
   ]
 })
 export class AppModule {}

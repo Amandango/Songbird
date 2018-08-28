@@ -21,18 +21,6 @@
 
         <div *ngIf="!loading">
             <ion-card>
-                <!-- <ion-slides pager>
-                <ion-slide padding>
-                    <ion-card-header text-center>
-                        <h2 class="momentsWeekTitle">Moments this week:</h2>
-                    </ion-card-header>
-                    <ion-card-content>
-                        <div class="number">
-                            {{allWeekTexts.length}}
-                        </div>
-                    </ion-card-content>
-                </ion-slide>
-                <ion-slide padding> -->
                 <ion-card-header text-center>
                     <h2 class="momentsWeekTitle">All moments:</h2>
                 </ion-card-header>
@@ -41,8 +29,6 @@
                         {{allTexts.length}}
                     </div>
                 </ion-card-content>
-                <!-- </ion-slide>
-            </ion-slides> -->
             </ion-card>
         </div>
 
@@ -80,26 +66,6 @@
 
                     </ion-item>
                 </ion-card>
-                <!-- <ion-card padding>
-                <ion-list no-lines>
-                    <ion-item *ngFor="let text of allTexts" text-wrap>
-                        <h2>{{text.momentTitle}}</h2>
-                        <p>{{text.createdOn | date}}</p>
-                        <br>
-                        <div *ngIf="text.momentText.length <= 40">
-                            <p>{{text.momentText}}</p>
-                        </div>
-                        <div *ngIf="truncating && text.momentText.length > 40">
-                            <p>{{text.momentText | truncate: 40}}</p>
-                            <button ion-button (click)="truncating = false"><ion-icon name="add"></ion-icon></button>
-                        </div>
-                        <div *ngIf="!truncating && text.momentText.length > 40">
-                            <p>{{text.momentText}}</p>
-                            <button ion-button (click)="truncating = true">show less</button>
-                        </div>
-                    </ion-item>
-                </ion-list>
-            </ion-card> -->
 
                 <div *ngIf="text">
                     <div *ngIf="truncating && text.length > limit">

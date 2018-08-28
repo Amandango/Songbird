@@ -6,20 +6,6 @@ page-log {
         height: 100%;
     }
 
-    // .circle {
-    //     border-radius: 50%;
-    //     width: 10px;
-    //     height: 10px;
-    //     background-color: orange;
-    //     margin-top: 2px;
-    // }
-
-    // .line {
-    //     width: 4px;
-    //     height: 100%;
-    //     background-color: orange;
-    // }
-
     .momentCount {
         width: 60px;
         height: 60px;
@@ -27,12 +13,6 @@ page-log {
         border: 3px solid orange;
         float: right;
     }
-
-    // .momentsWeek {
-    //     width: 85%;
-    //     margin: 0 auto;
-    //     font-size: 25px;
-    // }
 
     .momentsWeekTitle {
         font-size: 18px;
@@ -53,10 +33,6 @@ page-log {
         opacity: 1;
         background: map-get($colors, orange);
       }
-
-    // .loading {
-    //     padding: 20%;
-    // }
 
     .date {
         font-size: 12px;
